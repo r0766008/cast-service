@@ -170,7 +170,7 @@ public class CastControllerIntegrationTests {
     }
 
     @Test
-    public void whenPostReview_thenReturnJsonReview() throws Exception {
+    public void whenPostCast_thenReturnJsonCast() throws Exception {
         Cast cast5 = new Cast(1, "nm0719637", "Clint Barton/Hawkeye", "Jeremy", "Renner", 49,"Modesto, California, USA");
 
         mockMvc.perform(post("/cast")
@@ -188,11 +188,11 @@ public class CastControllerIntegrationTests {
     }
 
     @Test
-    public void givenReview_whenPutReview_thenReturnJsonReview() throws Exception {
-        Cast updatedReview = new Cast(1, "nm0000375", "Tony Stark/Iron Man", "Robert", "Downey", 55, "Manhatten, New York City, New York, USA");
+    public void givenCast_whenPutCast_thenReturnJsonCast() throws Exception {
+        Cast updatedCast = new Cast(1, "nm0000375", "Tony Stark/Iron Man", "Robert", "Downey", 55, "Manhatten, New York City, New York, USA");
 
         mockMvc.perform(put("/cast")
-                .content(mapper.writeValueAsString(updatedReview))
+                .content(mapper.writeValueAsString(updatedCast))
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
@@ -206,14 +206,14 @@ public class CastControllerIntegrationTests {
     }
 
     @Test
-    public void givenReview_whenDeleteReview_thenStatusOk() throws Exception {
+    public void givenCast_whenDeleteCast_thenStatusOk() throws Exception {
         mockMvc.perform(delete("/cast/imdb/{iMDB}", "nm1165110")
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk());
     }
 
     @Test
-    public void givenNoReview_whenDeleteReview_thenStatusNotFound() throws Exception {
+    public void givenNoCast_whenDeleteCast_thenStatusNotFound() throws Exception {
         mockMvc.perform(delete("/cast/imdb/{iMDB}", "nm1165111")
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isNotFound());

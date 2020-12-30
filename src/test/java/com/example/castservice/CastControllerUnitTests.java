@@ -175,7 +175,7 @@ public class CastControllerUnitTests {
     }
 
     @Test
-    public void whenPostReview_thenReturnJsonReview() throws Exception {
+    public void whenPostCast_thenReturnJsonCast() throws Exception {
         Cast cast5 = new Cast(1, "nm0719637", "Clint Barton/Hawkeye", "Jeremy", "Renner", 49,"Modesto, California, USA");
 
         mockMvc.perform(post("/cast")
@@ -193,15 +193,15 @@ public class CastControllerUnitTests {
     }
 
     @Test
-    public void givenReview_whenPutReview_thenReturnJsonReview() throws Exception {
+    public void givenCast_whenPutCast_thenReturnJsonCast() throws Exception {
         Cast cast1 = new Cast(1, "nm0000375", "Tony Stark/Iron Man", "Robert", "Downey Jr.", 55, "Manhatten, New York City, New York, USA");
 
         given(castRepository.findCastByiMDB("nm0000375")).willReturn(cast1);
 
-        Cast updatedReview = new Cast(1, "nm0000375", "Tony Stark/Iron Man", "Robert", "Downey", 55, "Manhatten, New York City, New York, USA");
+        Cast updatedCast = new Cast(1, "nm0000375", "Tony Stark/Iron Man", "Robert", "Downey", 55, "Manhatten, New York City, New York, USA");
 
         mockMvc.perform(put("/cast")
-                .content(mapper.writeValueAsString(updatedReview))
+                .content(mapper.writeValueAsString(updatedCast))
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
@@ -215,7 +215,7 @@ public class CastControllerUnitTests {
     }
 
     @Test
-    public void givenReview_whenDeleteReview_thenStatusOk() throws Exception {
+    public void givenCast_whenDeleteCast_thenStatusOk() throws Exception {
         Cast castToBeDeleted = new Cast(1, "nm1165110", "Thor", "Chris", "Hemsworth", 37, "Melbourne, Victoria, Australia");
 
         given(castRepository.findCastByiMDB("nm1165110")).willReturn(castToBeDeleted);
@@ -226,7 +226,7 @@ public class CastControllerUnitTests {
     }
 
     @Test
-    public void givenNoReview_whenDeleteReview_thenStatusNotFound() throws Exception {
+    public void givenNoCast_whenDeleteCast_thenStatusNotFound() throws Exception {
         given(castRepository.findCastByiMDB("nm1165111")).willReturn(null);
 
         mockMvc.perform(delete("/cast/imdb/{iMDB}", "nm1165111")

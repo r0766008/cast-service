@@ -37,17 +37,11 @@ public class Cast {
         return movieId;
     }
 
-    public void setMovieId(Integer movieId) {
-        this.movieId = movieId;
-    }
+    public void setMovieId(Integer movieId) { this.movieId = movieId; }
 
-    public String getiMDB() {
-        return iMDB;
-    }
+    public String getiMDB() { return iMDB; }
 
-    public void setiMDB(String iMDB) {
-        this.iMDB = iMDB;
-    }
+    public void setiMDB(String iMDB) { this.iMDB = iMDB; }
 
     public String getCharacter() {
         return character;
@@ -81,9 +75,7 @@ public class Cast {
         this.age = age;
     }
 
-    public String getBirthPlace() {
-        return birthPlace;
-    }
+    public String getBirthPlace() { return birthPlace; }
 
     public void setBirthPlace(String birthPlace) {
         this.birthPlace = birthPlace;

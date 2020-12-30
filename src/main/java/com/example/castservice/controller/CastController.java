@@ -62,6 +62,8 @@ public class CastController {
     @PutMapping("/cast")
     public Cast updateCast(@RequestBody Cast updatedCast) {
         Cast retrievedCast = castRepository.findCastByiMDB(updatedCast.getiMDB());
+        retrievedCast.setMovieId(updatedCast.getMovieId());
+        retrievedCast.setiMDB(updatedCast.getiMDB());
         retrievedCast.setCharacter(updatedCast.getCharacter());
         retrievedCast.setFirstName(updatedCast.getFirstName());
         retrievedCast.setLastName(updatedCast.getLastName());
