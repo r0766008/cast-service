@@ -18,10 +18,10 @@ public class CastController {
     @PostConstruct
     public void fillDB() {
         if(castRepository.count() == 0) {
-            castRepository.save(new Cast(1, "nm0000375", "Tony Stark/Iron Man", "Robert", "Downey Jr.", 55, "Manhatten, New York City, New York, USA"));
-            castRepository.save(new Cast(1, "nm0262635", "Steve Rogers/Captain America", "Chris", "Evans", 39, "Boston, Massachusetts, USA"));
+            castRepository.save(new Cast(851, "nm0000375", "Tony Stark/Iron Man", "Robert", "Downey Jr.", 55, "Manhatten, New York City, New York, USA"));
+            castRepository.save(new Cast(852, "nm0262635", "Steve Rogers/Captain America", "Chris", "Evans", 39, "Boston, Massachusetts, USA"));
             castRepository.save(new Cast(1, "nm0749263", "Bruce Banner/The Hulk", "Mark", "Ruffalo", 53, "Kenosha, Wisconsin, USA"));
-            castRepository.save(new Cast(1, "nm1165110", "Thor", "Chris", "Hemsworth", 37, "Melbourne, Victoria, Australia"));
+            castRepository.save(new Cast(859, "nm1165110", "Thor", "Chris", "Hemsworth", 37, "Melbourne, Victoria, Australia"));
             castRepository.save(new Cast(1, "nm0424060", "Natasha Romanoff/Black Widow", "Scarlett", "Johansson", 37, "Manhatten, New York City, New York, USA"));
         }
 
@@ -31,6 +31,11 @@ public class CastController {
     @GetMapping("/cast/imdb/{iMDB}")
     public Cast getCastByIMDB(@PathVariable String iMDB) {
         return castRepository.findCastByiMDB(iMDB);
+    }
+
+    @GetMapping("/cast/movie/{movieID}")
+    public List<Cast> getCastByMovieID(@PathVariable int movieID) {
+        return castRepository.findCastsByMovieId(movieID);
     }
 
     @GetMapping("/cast/character/{character}")

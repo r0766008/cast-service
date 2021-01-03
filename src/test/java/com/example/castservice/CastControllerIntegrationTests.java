@@ -66,6 +66,28 @@ public class CastControllerIntegrationTests {
     }
 
     @Test
+    public void givenCast_whenGetCastByMovieId_thenReturnJsonCasts() throws Exception {
+        mockMvc.perform(get("/cast/movie/{movieID}", 1))
+                .andExpect(content().contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$", hasSize(5)))
+                .andExpect(jsonPath("$[0].movieId", is(1)))
+                .andExpect(jsonPath("$[0].iMDB", is("nm0000375")))
+                .andExpect(jsonPath("$[0].character", is("Tony Stark/Iron Man")))
+                .andExpect(jsonPath("$[0].firstName", is("Robert")))
+                .andExpect(jsonPath("$[0].lastName", is("Downey Jr.")))
+                .andExpect(jsonPath("$[0].age", is(55)))
+                .andExpect(jsonPath("$[0].birthPlace", is("Manhatten, New York City, New York, USA")))
+                .andExpect(jsonPath("$[2].movieId", is(1)))
+                .andExpect(jsonPath("$[2].iMDB", is("nm0749263")))
+                .andExpect(jsonPath("$[2].character", is("Bruce Banner/The Hulk")))
+                .andExpect(jsonPath("$[2].firstName", is("Mark")))
+                .andExpect(jsonPath("$[2].lastName", is("Ruffalo")))
+                .andExpect(jsonPath("$[2].age", is(53)))
+                .andExpect(jsonPath("$[2].birthPlace", is("Kenosha, Wisconsin, USA")));
+    }
+
+    @Test
     public void givenCast_whenGetCastsByCharacter_thenReturnJsonCasts() throws Exception {
         List<Cast> castList = new ArrayList<>();
         castList.add(cast2);

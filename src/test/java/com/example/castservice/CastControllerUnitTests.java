@@ -51,6 +51,37 @@ public class CastControllerUnitTests {
     }
 
     @Test
+    public void givenCast_whenGetCastByMovieId_thenReturnJsonCasts() throws Exception {
+        Cast cast2 = new Cast(1, "nm0262635", "Steve Rogers/Captain America", "Chris", "Evans", 39, "Boston, Massachusetts, USA");
+        Cast cast3 = new Cast(1, "nm0749263", "Bruce Banner/The Hulk", "Mark", "Ruffalo", 53, "Kenosha, Wisconsin, USA");
+
+        List<Cast> castList = new ArrayList<>();
+        castList.add(cast2);
+        castList.add(cast3);
+
+        given(castRepository.findCastsByMovieId(1)).willReturn(castList);
+
+        mockMvc.perform(get("/cast/movie/{movieID}", 1))
+                .andExpect(content().contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$", hasSize(2)))
+                .andExpect(jsonPath("$[0].movieId", is(1)))
+                .andExpect(jsonPath("$[0].iMDB", is("nm0262635")))
+                .andExpect(jsonPath("$[0].character", is("Steve Rogers/Captain America")))
+                .andExpect(jsonPath("$[0].firstName", is("Chris")))
+                .andExpect(jsonPath("$[0].lastName", is("Evans")))
+                .andExpect(jsonPath("$[0].age", is(39)))
+                .andExpect(jsonPath("$[0].birthPlace", is("Boston, Massachusetts, USA")))
+                .andExpect(jsonPath("$[1].movieId", is(1)))
+                .andExpect(jsonPath("$[1].iMDB", is("nm0749263")))
+                .andExpect(jsonPath("$[1].character", is("Bruce Banner/The Hulk")))
+                .andExpect(jsonPath("$[1].firstName", is("Mark")))
+                .andExpect(jsonPath("$[1].lastName", is("Ruffalo")))
+                .andExpect(jsonPath("$[1].age", is(53)))
+                .andExpect(jsonPath("$[1].birthPlace", is("Kenosha, Wisconsin, USA")));
+    }
+
+    @Test
     public void givenCast_whenGetCastsByCharacter_thenReturnJsonCasts() throws Exception {
         Cast cast2 = new Cast(1, "nm0262635", "Steve Rogers/Captain America", "Chris", "Evans", 39, "Boston, Massachusetts, USA");
         Cast cast3 = new Cast(1, "nm0749263", "Bruce Banner/The Hulk", "Mark", "Ruffalo", 53, "Kenosha, Wisconsin, USA");

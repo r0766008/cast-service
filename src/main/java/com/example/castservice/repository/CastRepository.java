@@ -13,4 +13,5 @@ public interface CastRepository extends MongoRepository<Cast, String> {
     List<Cast> findCastByCharacterContains(String character);
     List<Cast> findCastByAgeEquals(Integer age);
     List<Cast> findCastByBirthPlaceContains(String birthPlace);
+    List<Cast> findCastsByMovieId(int movieID);
 }
