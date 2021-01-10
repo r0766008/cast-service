@@ -17,6 +17,7 @@ public class CastController {
 
     @PostConstruct
     public void fillDB() {
+        castRepository.deleteAll();
         if(castRepository.count() == 0) {
             castRepository.save(new Cast(null, 1, "hsCu1JUzQQ4pl7uFxAVFLOs9yHh", "Andy Dufresne", "Tim", "Robbins", 62, "West Covina, California, USA"));
             castRepository.save(new Cast(null, 1, "oIciQWr8VwKoR8TmAw1owaiZFyb", "Ellis Boyd Red Redding", "Morgan", "Freeman", 83, "Memphis, Tennessee, USA"));
