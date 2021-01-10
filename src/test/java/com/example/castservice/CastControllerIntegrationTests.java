@@ -28,11 +28,11 @@ public class CastControllerIntegrationTests {
     @Autowired
     private CastRepository castRepository;
 
-    private Cast cast1 = new Cast(1, "nm0000375", "Tony Stark/Iron Man", "Robert", "Downey Jr.", 55, "Manhatten, New York City, New York, USA");
-    private Cast cast2 = new Cast(1, "nm0262635", "Steve Rogers/Captain America", "Chris", "Evans", 39, "Boston, Massachusetts, USA");
-    private Cast cast3 = new Cast(1, "nm0749263", "Bruce Banner/The Hulk", "Mark", "Ruffalo", 53, "Kenosha, Wisconsin, USA");
-    private Cast cast4 = new Cast(1, "nm0424060", "Natasha Romanoff/Black Widow", "Scarlett", "Johansson", 37, "Manhatten, New York City, New York, USA");
-    private Cast castToBeDeleted = new Cast(1, "nm1165110", "Thor", "Chris", "Hemsworth", 37, "Melbourne, Victoria, Australia");
+    private Cast cast1 = new Cast(null,1, "nm0000375", "Tony Stark/Iron Man", "Robert", "Downey Jr.", 55, "Manhatten, New York City, New York, USA");
+    private Cast cast2 = new Cast(null,1, "nm0262635", "Steve Rogers/Captain America", "Chris", "Evans", 39, "Boston, Massachusetts, USA");
+    private Cast cast3 = new Cast(null,1, "nm0749263", "Bruce Banner/The Hulk", "Mark", "Ruffalo", 53, "Kenosha, Wisconsin, USA");
+    private Cast cast4 = new Cast(null,1, "nm0424060", "Natasha Romanoff/Black Widow", "Scarlett", "Johansson", 37, "Manhatten, New York City, New York, USA");
+    private Cast castToBeDeleted = new Cast(null,1, "nm1165110", "Thor", "Chris", "Hemsworth", 37, "Melbourne, Victoria, Australia");
 
     @BeforeEach
     public void beforeAllTests() {
@@ -193,7 +193,7 @@ public class CastControllerIntegrationTests {
 
     @Test
     public void whenPostCast_thenReturnJsonCast() throws Exception {
-        Cast cast5 = new Cast(1, "nm0719637", "Clint Barton/Hawkeye", "Jeremy", "Renner", 49,"Modesto, California, USA");
+        Cast cast5 = new Cast(null,1, "nm0719637", "Clint Barton/Hawkeye", "Jeremy", "Renner", 49,"Modesto, California, USA");
 
         mockMvc.perform(post("/cast")
                 .content(mapper.writeValueAsString(cast5))
@@ -211,7 +211,7 @@ public class CastControllerIntegrationTests {
 
     @Test
     public void givenCast_whenPutCast_thenReturnJsonCast() throws Exception {
-        Cast updatedCast = new Cast(1, "nm0000375", "Tony Stark/Iron Man", "Robert", "Downey", 55, "Manhatten, New York City, New York, USA");
+        Cast updatedCast = new Cast(null,1, "nm0000375", "Tony Stark/Iron Man", "Robert", "Downey", 55, "Manhatten, New York City, New York, USA");
 
         mockMvc.perform(put("/cast")
                 .content(mapper.writeValueAsString(updatedCast))

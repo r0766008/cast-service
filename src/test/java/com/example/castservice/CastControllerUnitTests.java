@@ -34,7 +34,7 @@ public class CastControllerUnitTests {
 
     @Test
     public void givenCast_whenGetCastByIMDB_thenReturnJsonCast() throws Exception {
-        Cast cast1 = new Cast(1, "nm0000375", "Tony Stark/Iron Man", "Robert", "Downey Jr.", 55, "Manhatten, New York City, New York, USA");
+        Cast cast1 = new Cast(null, 1, "nm0000375", "Tony Stark/Iron Man", "Robert", "Downey Jr.", 55, "Manhatten, New York City, New York, USA");
 
         given(castRepository.findCastByiMDB("nm0000375")).willReturn(cast1);
 
@@ -52,8 +52,8 @@ public class CastControllerUnitTests {
 
     @Test
     public void givenCast_whenGetCastByMovieId_thenReturnJsonCasts() throws Exception {
-        Cast cast2 = new Cast(1, "nm0262635", "Steve Rogers/Captain America", "Chris", "Evans", 39, "Boston, Massachusetts, USA");
-        Cast cast3 = new Cast(1, "nm0749263", "Bruce Banner/The Hulk", "Mark", "Ruffalo", 53, "Kenosha, Wisconsin, USA");
+        Cast cast2 = new Cast(null,1, "nm0262635", "Steve Rogers/Captain America", "Chris", "Evans", 39, "Boston, Massachusetts, USA");
+        Cast cast3 = new Cast(null,1, "nm0749263", "Bruce Banner/The Hulk", "Mark", "Ruffalo", 53, "Kenosha, Wisconsin, USA");
 
         List<Cast> castList = new ArrayList<>();
         castList.add(cast2);
@@ -83,8 +83,8 @@ public class CastControllerUnitTests {
 
     @Test
     public void givenCast_whenGetCastsByCharacter_thenReturnJsonCasts() throws Exception {
-        Cast cast2 = new Cast(1, "nm0262635", "Steve Rogers/Captain America", "Chris", "Evans", 39, "Boston, Massachusetts, USA");
-        Cast cast3 = new Cast(1, "nm0749263", "Bruce Banner/The Hulk", "Mark", "Ruffalo", 53, "Kenosha, Wisconsin, USA");
+        Cast cast2 = new Cast(null,1, "nm0262635", "Steve Rogers/Captain America", "Chris", "Evans", 39, "Boston, Massachusetts, USA");
+        Cast cast3 = new Cast(null,1, "nm0749263", "Bruce Banner/The Hulk", "Mark", "Ruffalo", 53, "Kenosha, Wisconsin, USA");
 
         List<Cast> castList = new ArrayList<>();
         castList.add(cast2);
@@ -114,8 +114,8 @@ public class CastControllerUnitTests {
 
     @Test
     public void givenCast_whenGetCastsByName_thenReturnJsonCasts() throws Exception {
-        Cast cast2 = new Cast(1, "nm0262635", "Steve Rogers/Captain America", "Chris", "Evans", 39, "Boston, Massachusetts, USA");
-        Cast castToBeDeleted = new Cast(1, "nm1165110", "Thor", "Chris", "Hemsworth", 37, "Melbourne, Victoria, Australia");
+        Cast cast2 = new Cast(null,1, "nm0262635", "Steve Rogers/Captain America", "Chris", "Evans", 39, "Boston, Massachusetts, USA");
+        Cast castToBeDeleted = new Cast(null,1, "nm1165110", "Thor", "Chris", "Hemsworth", 37, "Melbourne, Victoria, Australia");
 
         List<Cast> castList = new ArrayList<>();
         castList.add(cast2);
@@ -145,8 +145,8 @@ public class CastControllerUnitTests {
 
     @Test
     public void givenCast_whenGetCastsByAge_thenReturnJsonCasts() throws Exception {
-        Cast cast4 = new Cast(1, "nm0424060", "Natasha Romanoff/Black Widow", "Scarlett", "Johansson", 37, "Manhatten, New York City, New York, USA");
-        Cast castToBeDeleted = new Cast(1, "nm1165110", "Thor", "Chris", "Hemsworth", 37, "Melbourne, Victoria, Australia");
+        Cast cast4 = new Cast(null,1, "nm0424060", "Natasha Romanoff/Black Widow", "Scarlett", "Johansson", 37, "Manhatten, New York City, New York, USA");
+        Cast castToBeDeleted = new Cast(null,1, "nm1165110", "Thor", "Chris", "Hemsworth", 37, "Melbourne, Victoria, Australia");
 
         List<Cast> castList = new ArrayList<>();
         castList.add(cast4);
@@ -176,8 +176,8 @@ public class CastControllerUnitTests {
 
     @Test
     public void givenCast_whenGetCastsByBirthPlace_thenReturnJsonCasts() throws Exception {
-        Cast cast1 = new Cast(1, "nm0000375", "Tony Stark/Iron Man", "Robert", "Downey Jr.", 55, "Manhatten, New York City, New York, USA");
-        Cast cast4 = new Cast(1, "nm0424060", "Natasha Romanoff/Black Widow", "Scarlett", "Johansson", 37, "Manhatten, New York City, New York, USA");
+        Cast cast1 = new Cast(null,1, "nm0000375", "Tony Stark/Iron Man", "Robert", "Downey Jr.", 55, "Manhatten, New York City, New York, USA");
+        Cast cast4 = new Cast(null,1, "nm0424060", "Natasha Romanoff/Black Widow", "Scarlett", "Johansson", 37, "Manhatten, New York City, New York, USA");
 
         List<Cast> castList = new ArrayList<>();
         castList.add(cast1);
@@ -207,7 +207,7 @@ public class CastControllerUnitTests {
 
     @Test
     public void whenPostCast_thenReturnJsonCast() throws Exception {
-        Cast cast5 = new Cast(1, "nm0719637", "Clint Barton/Hawkeye", "Jeremy", "Renner", 49,"Modesto, California, USA");
+        Cast cast5 = new Cast(null,1, "nm0719637", "Clint Barton/Hawkeye", "Jeremy", "Renner", 49,"Modesto, California, USA");
 
         mockMvc.perform(post("/cast")
                 .content(mapper.writeValueAsString(cast5))
@@ -225,11 +225,11 @@ public class CastControllerUnitTests {
 
     @Test
     public void givenCast_whenPutCast_thenReturnJsonCast() throws Exception {
-        Cast cast1 = new Cast(1, "nm0000375", "Tony Stark/Iron Man", "Robert", "Downey Jr.", 55, "Manhatten, New York City, New York, USA");
+        Cast cast1 = new Cast(null,1, "nm0000375", "Tony Stark/Iron Man", "Robert", "Downey Jr.", 55, "Manhatten, New York City, New York, USA");
 
         given(castRepository.findCastByiMDB("nm0000375")).willReturn(cast1);
 
-        Cast updatedCast = new Cast(1, "nm0000375", "Tony Stark/Iron Man", "Robert", "Downey", 55, "Manhatten, New York City, New York, USA");
+        Cast updatedCast = new Cast(null,1, "nm0000375", "Tony Stark/Iron Man", "Robert", "Downey", 55, "Manhatten, New York City, New York, USA");
 
         mockMvc.perform(put("/cast")
                 .content(mapper.writeValueAsString(updatedCast))
@@ -247,7 +247,7 @@ public class CastControllerUnitTests {
 
     @Test
     public void givenCast_whenDeleteCast_thenStatusOk() throws Exception {
-        Cast castToBeDeleted = new Cast(1, "nm1165110", "Thor", "Chris", "Hemsworth", 37, "Melbourne, Victoria, Australia");
+        Cast castToBeDeleted = new Cast(null,1, "nm1165110", "Thor", "Chris", "Hemsworth", 37, "Melbourne, Victoria, Australia");
 
         given(castRepository.findCastByiMDB("nm1165110")).willReturn(castToBeDeleted);
 
